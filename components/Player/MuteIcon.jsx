@@ -1,18 +1,14 @@
 import Image from 'next/image'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Mute from 'components/Icons/Mute'
 
-import { faVolumeMute } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react'
 export function MuteIcon () {
-
-;
-
 
   return (
     <>
       <div className='player-icon'>
     
-       <FontAwesomeIcon className='player-icon' icon={faVolumeMute}  /> 
+      <Mute />
       </div>
 
       <style jsx>{`
