@@ -12,7 +12,7 @@ export function MuteIcon () {
     <>
       <div className='player-icon'>
     
-       <FontAwesomeIcon icon={faVolumeMute}  /> 
+       <FontAwesomeIcon className='player-icon' icon={faVolumeMute}  /> 
       </div>
 
       <style jsx>{`
