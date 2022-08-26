@@ -1,8 +1,6 @@
 import PostList from 'components/PostList'
 
 const Nsfw = (props) => {
-
-
 const video = []; 
   const getPosts =props.posts.data.map((im)=>
         { im.images?.map((vid,id)=>{          
@@ -30,8 +28,7 @@ if(vid.type==="video/mp4")
 
   return (
     <main>
-     
-      <PostList video={video} />
+     <PostList video={video} />
     </main>
   )
 }
