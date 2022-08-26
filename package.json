@@ -4,7 +4,7 @@
   "private": true,
   "description": "TikTok-enhanced-clone-(CRISPY) ",
    "author": "abhishekjinxed@gmail.com",
-  "license": "MIT",
+  "license": "MITf",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
