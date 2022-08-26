@@ -14,17 +14,15 @@ export default function PostList ({video}) {
     setTopscroll(event.currentTarget.scrollTop)
     // console.log('offsetHeight: ', event.currentTarget.offsetHeight);
   };
- 
+  
+  const gmute = ()=>{
+
+    setMute(!mute)
+  }
 
   return (
     <section className='post-list' onScroll={handleScroll} 
-    onClick={()=>  
-      {   setMute(!mute)
-        
-         
-      }
-       
-     }>
+    onClick={gmute }>
       
       {video.map( (item,k) => (
       
