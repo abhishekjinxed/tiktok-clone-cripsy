@@ -31,7 +31,7 @@ if(curentvideonumber==cnt)
   video.current.play()
 
   video.current.addEventListener("loadeddata", function() {
-  console.log(video.current.webkitAudioDecodedByteCount )
+  // console.log(video.current.webkitAudioDecodedByteCount )
   })
   
 if(video.current.webkitAudioDecodedByteCount  > 0 )
