@@ -1,6 +1,6 @@
 import PostList from 'components/PostList'
 
-const Nsfw = (props) => {
+const Home = (props) => {
 const video = []; 
   const getPosts =props.posts.data.map((im)=>
         { im.images?.map((vid,id)=>{          
@@ -34,7 +34,7 @@ if(vid.type==="video/mp4")
 }
 export async function getServerSideProps(context) {
   // fetch the blog posts from the mock API
-  const res = await fetch('https://api.imgur.com/3/gallery/top',  
+  const res = await fetch('https://api.imgur.com/3/gallery/hot',  
   {
     method: 'GET',
     headers: new Headers({
@@ -47,4 +47,4 @@ export async function getServerSideProps(context) {
     props: { posts } // props will be passed to the page
   };
 }
-export default Nsfw
+export default Home

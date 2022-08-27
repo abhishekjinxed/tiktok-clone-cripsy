@@ -7,7 +7,7 @@ const Post = (reel) => {
   const tiktok=reel.posts.data
   const router = useRouter()
   const { pid } = router.query
-  const id=pid
+
  
 
   const video = []; 
@@ -23,7 +23,7 @@ const Post = (reel) => {
     
 
   })
-  const item=video
+ 
   return ( <div><Head>
       <title>Social Media Preview</title>
       <meta property="og:url" content={router.asPath}/>
@@ -58,7 +58,7 @@ export async function getServerSideProps(context) {
     })}
   );
   const posts = await res.json();
-console.log(posts)
+
   return {
     props: { posts } // props will be passed to the page
   };

@@ -5,10 +5,6 @@ const IndianDankMeme = (props) => {
 
 const video = []; 
 
-// props.posts.data.children.map((p)=>{
-// const k=p.data
-//   console.log(k?.secure_media?.reddit_video.fallback_url)
-// })
 
    const getPosts =props.posts.data.children.map((p)=>
         { 
@@ -25,7 +21,7 @@ const video = [];
                         shares:19,
                         author: "@midudev",
                         text: "this is default text",
-                        album:{title:"sonido original - Miguel", Cover:'/images/user.jpeg'},
+                        album:{title: im.account_url+"- Original", Cover:'/images/user.jpeg'},
                         avatar:'/images/user.jpeg'
                       
                       });

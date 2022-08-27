@@ -1,59 +1,58 @@
 import PostList from 'components/PostList'
 
-const Home = (props) => {
-
-console.log(props)
+const Nsfw = (props) => {
 
 
 const video = []; 
-  const getPosts =props.posts.data.map((im)=>
-        { im.images?.map((vid,id)=>{          
-if(vid.type==="video/mp4") 
-{video.push({ 
-            id : im.id,
-            title: im.title,
-            comments:im.comment_count,
-            likes:im.ups,
-            mp4: vid.mp4,
-            source:im.link,
-            nsfw:im.nsfw,
-            shares:19,
-            author: "@midudev",
-            text: "this is default text",
-            album:{title:"sonido original - Miguel", Cover:'/images/user.jpeg'},
-            avatar:'/images/user.jpeg'
-          
-          });
-}
-           });     
-        
-        
-        });
 
+
+   const getPosts =props.posts.data.children.map((p)=>
+        { 
+          const im=p.data
+          console.log(im.preview?.reddit_video_preview?.fallback_url!=undefined)
+          
+          if(im.preview?.reddit_video_preview?.fallback_url!=undefined)
+            video.push({ 
+                        id : im.id,
+                        title: im.title,
+                        comments:im.num_comments,
+                        likes:im.ups,
+                        mp4: im.preview?.reddit_video_preview?.fallback_url,
+                        source:im.link,
+                        nsfw:im.nsfw,
+                        shares:19,
+                        author: "@midudev",
+                        text: "this is default text",
+                        album:{title: im.author+" - Original Music", Cover:'/images/user.jpeg'},
+                        avatar:'/images/user.jpeg'
+                      
+                      });
+
+          });     
+        
+        
+      
   return (
    
-         <div className='nsfw'>NSFW
-
-
-<style jsx>{`
-        .nsfw {
-          background:black;
-          height :100vh
-        }
-      `}</style>
-         </div>
+    <main>
+     
+    <PostList video={video} />
+  </main>
       
    
   )
 }
 export async function getServerSideProps(context) {
   // fetch the blog posts from the mock API
-  const res = await fetch('https://api.imgur.com/3/album/khTBPa3',  //correct
+
+  const tags='indian_nsfw+tiktokporn+indianbabe+nsfw+NSFW_GIF+iWantToFuckHer+pornvids'
+  const res = await fetch('https://www.reddit.com/r/'+tags+'/.json',  
   {
     method: 'GET',
-    headers: new Headers({
-      "Authorization":"Client-ID b744a48b8b78bf9"
-    })}
+    // headers: new Headers({
+    //   "Authorization":"Client-ID b744a48b8b78bf9"
+    // })
+  }
   );
   const posts = await res.json();
 
@@ -61,4 +60,4 @@ export async function getServerSideProps(context) {
     props: { posts } // props will be passed to the page
   };
 }
-export default Home
+export default Nsfw
