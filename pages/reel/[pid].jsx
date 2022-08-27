@@ -1,42 +1,65 @@
 import { useRouter } from 'next/router'
-import Player from '../../components/Player'
-import PostItemSidebar from 'components/PostItem/PostItemSidebar'
-import PostItemBottom from 'components/PostItem/PostItemBottom'
+import PostList from '../../components/PostList'
+import Head from 'next/head'
 
-const Post = () => {
+const Post = (reel) => {
+
+  const tiktok=reel.posts.data
   const router = useRouter()
   const { pid } = router.query
-  const video  = {
-    mp4:'https://i.imgur.com/04BJ3wy.mp4',
-    poster:'https://i.imgur.com/04BJ3wy.mp4',
-    id:'feafea',
-    title:'feaf',
+  const id=pid
+ 
+
+  const video = []; 
+   video.push ({
+    mp4:tiktok.images[0].mp4,
+    poster:tiktok.images[0].gifv,
+    id:pid,
+    title:tiktok.title,
     album:{
-      title:'feafe- jack harlow'
-    }
+      title:tiktok.account_url +' - original',
+      Cover:'/images/disc-music.gif'},
+      avatar:'/images/user.jpeg'
+    
 
-  }
+  })
   const item=video
-  return (
-
-    <article className='post-item'>
-    <Player src={video.mp4} poster={video.poster} id={video.id} />
-    <PostItemSidebar {...item} />
-    <PostItemBottom {...item} />
+  return ( <div><Head>
+      <title>Social Media Preview</title>
+      <meta property="og:url" content={router.asPath}/>
+      <meta property="og:type" content="website" />
+      <meta property="fb:app_id" content="your fb id" />
+      <meta property="og:title" content={tiktok.title} />
+      <meta name="twitter:card" content={tiktok.title} />
+      <meta
+        property="og:description"
+        content={tiktok.title}
+      />
+      <meta property="og:image" content={tiktok.images[0].gifv} />
+    </Head>
   
-    <style jsx>{`
-      .post-item {
-        display: flex;
-        width: 100%;
-        height: calc(var(--vh, 1vh) * 100);
-        scroll-snap-align: center;
-        position: relative;
-      }
-    `}</style>
-  </article>
+  
+    <PostList video={video} />
+  </div>
   
 
-  )
+  );
 }
 
 export default Post
+
+export async function getServerSideProps(context) {
+  // fetch the blog posts from the mock API
+  const res = await fetch(`https://api.imgur.com/3/album/${context.params.pid}`,  //correct
+  {
+    method: 'GET',
+    headers: new Headers({
+      "Authorization":"Client-ID b744a48b8b78bf9"
+    })}
+  );
+  const posts = await res.json();
+console.log(posts)
+  return {
+    props: { posts } // props will be passed to the page
+  };
+}

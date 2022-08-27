@@ -2,6 +2,8 @@ import PostList from 'components/PostList'
 
 const Home = (props) => {
 
+console.log(props)
+
 
 const video = []; 
   const getPosts =props.posts.data.map((im)=>
@@ -46,7 +48,7 @@ if(vid.type==="video/mp4")
 }
 export async function getServerSideProps(context) {
   // fetch the blog posts from the mock API
-  const res = await fetch('https://api.imgur.com/3/gallery/hot',  
+  const res = await fetch('https://api.imgur.com/3/album/khTBPa3',  //correct
   {
     method: 'GET',
     headers: new Headers({

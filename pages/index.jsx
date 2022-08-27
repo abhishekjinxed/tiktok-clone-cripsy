@@ -16,7 +16,7 @@ if(vid.type==="video/mp4")
             shares:'1.5k',
             author: "@midudev",
             text: "this is default text",
-            album:{title:"sonido original - Miguel", Cover:'/images/disc-music.gif'},
+            album:{title:im.account_url+" - original", Cover:'/images/disc-music.gif'},
             avatar:'/images/user.jpeg'
           
           });
