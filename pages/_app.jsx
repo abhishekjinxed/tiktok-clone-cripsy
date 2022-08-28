@@ -10,11 +10,12 @@ function MyApp ({ Component, pageProps }) {
     
   return (
     <>
-      {isPageLoading ? (
+     <Component {...pageProps} />
+      {/* {isPageLoading ? (
         <h1>Loading...</h1>
       ) : (
         <Component {...pageProps} />
-      )}
+      )} */}
     </>
    );
   

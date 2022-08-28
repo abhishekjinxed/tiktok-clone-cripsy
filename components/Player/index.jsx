@@ -4,17 +4,11 @@ import {useCallback } from 'react'
 import { useRouter } from 'next/router'
 
 export default function Player ({ src, poster,id,cnt,scrolltop,mute}) {
-   const video =useRef(null)
-   const muteref=useRef(null)
-   
+    const video =useRef(null)
+    const muteref=useRef(null)
   
-   const router = useRouter()
-
-   
-
-   
-  
-   function isNaturalNumber (str) {
+    const router = useRouter()
+    function isNaturalNumber (str) {
    return (str).toFixed() ;
 }
 
@@ -25,30 +19,21 @@ const curentvideonumber= isNaturalNumber(scrolltop/height)
 
 if(curentvideonumber==cnt)
 {
- // router.push('/','/reel/'+id,{ shallow: true }) 
- 
- 
-  video.current.play()
+      router.push('','/reel/'+id,{ shallow: true })  
+      console.log(curentvideonumber==cnt)
+      video.current.play()
 
-  video.current.addEventListener("loadeddata", function() {
-  // console.log(video.current.webkitAudioDecodedByteCount )
-  })
-  
-if(video.current.webkitAudioDecodedByteCount  > 0 )
- {
-  muteref.current.style.display = 'none' ;
-  
- 
-}
-else
-{
-muteref.current.style.display = 'block'
-muteref.current.style.webkitAnimation = 'fadein 2s';
-setTimeout(()=>{muteref.current.style.display = 'none'},1500) ;
-}
-
-
-  
+        if(video.current.webkitAudioDecodedByteCount  > 0 )
+        {
+          muteref.current.style.display = 'none' ;  
+        
+        }
+        else
+        {
+        muteref.current.style.display = 'block'
+        muteref.current.style.webkitAnimation = 'fadein 2s';
+        setTimeout(()=>{muteref.current.style.display = 'none'},3000) ;
+        }  
 }
 else
 {
@@ -67,7 +52,7 @@ else
         webkit-playsinline='true'
         playsInline
         loop
-        poster={poster}
+        poster='/images/loading.gif'
         ref={video}              
         
           // document.getElementsByClassName('post-list')[0].scrollTop

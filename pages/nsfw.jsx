@@ -9,8 +9,7 @@ const video = [];
    const getPosts =props.posts.data.children.map((p)=>
         { 
           const im=p.data
-          console.log(im.preview?.reddit_video_preview?.fallback_url!=undefined)
-          
+                  
           if(im.preview?.reddit_video_preview?.fallback_url!=undefined)
             video.push({ 
                         id : im.id,
@@ -45,7 +44,7 @@ const video = [];
 export async function getServerSideProps(context) {
   // fetch the blog posts from the mock API
 
-  const tags='indian_nsfw+tiktokporn+indianbabe+nsfw+NSFW_GIF+iWantToFuckHer+pornvids'
+  const tags='indian_nsfw+tiktokporn+indianbabe+nsfw+NSFW_GIF+iWantToFuckHer+pornvids+celebnsfw'
   const res = await fetch('https://www.reddit.com/r/'+tags+'/.json',  
   {
     method: 'GET',
