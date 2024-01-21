@@ -36,7 +36,7 @@ export async function getServerSideProps(context) {
   // fetch the blog posts from the mock API
 try{
   const tags='indian_nsfw+tiktokporn+indianbabe+nsfw+NSFW_GIF+iWantToFuckHer+pornvids+celebnsfw+gonewild'
-  const res = await fetch('https://www.reddit.com/r/'+tags+'/.json',  
+  const res = await fetch('https://reddit.com/r/'+tags+'/.json',  
   {
     method: 'GET',
     // headers: new Headers({
