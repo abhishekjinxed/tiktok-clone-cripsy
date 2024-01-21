@@ -34,17 +34,31 @@ if(vid.type==="video/mp4")
 }
 export async function getServerSideProps(context) {
   // fetch the blog posts from the mock API
-  const res = await fetch('https://api.imgur.com/3/gallery/hot',  
+try{
+  const tags='indian_nsfw+tiktokporn+indianbabe+nsfw+NSFW_GIF+iWantToFuckHer+pornvids+celebnsfw+gonewild'
+  const res = await fetch('https://reddit.com/r/'+tags+'/.json',  
   {
     method: 'GET',
-    headers: new Headers({
-      "Authorization":"Client-ID b744a48b8b78bf9"
-    })}
+    // headers: new Headers({
+    //   "Authorization":"Client-ID b744a48b8b78bf9"
+    // })
+  }
   );
+  console.log(res);
   const posts = await res.json();
-
+  console.log(posts.data.children)
   return {
     props: { posts } // props will be passed to the page
   };
+
+   } catch (error) {
+    console.error('Error fetching data:', error);
+
+    // Return an empty or default value in case of an error
+    return {
+      props: { posts: [] },
+    };
+  }
+
 }
 export default Home

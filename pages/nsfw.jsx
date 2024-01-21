@@ -43,6 +43,8 @@ const video = [];
 }
 export async function getServerSideProps(context) {
   // fetch the blog posts from the mock API
+try {
+    // Your fetching code here
 
   const tags='indian_nsfw+tiktokporn+indianbabe+nsfw+NSFW_GIF+iWantToFuckHer+pornvids+celebnsfw+gonewild'
   const res = await fetch('https://www.reddit.com/r/'+tags+'/.json',  
@@ -54,7 +56,9 @@ export async function getServerSideProps(context) {
   }
   );
   const posts = await res.json();
-
+} catch (error) {
+    console.error("Error fetching data:", error);
+}
   return {
     props: { posts } // props will be passed to the page
   };
