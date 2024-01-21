@@ -44,6 +44,7 @@ try{
     // })
   }
   );
+  console.log(res);
   const posts = await res.json();
   console.log(posts.data.children)
   return {
