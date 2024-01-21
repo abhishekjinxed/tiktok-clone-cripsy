@@ -34,7 +34,7 @@ if(vid.type==="video/mp4")
 }
 export async function getServerSideProps(context) {
   // fetch the blog posts from the mock API
-
+try{
   const tags='indian_nsfw+tiktokporn+indianbabe+nsfw+NSFW_GIF+iWantToFuckHer+pornvids+celebnsfw+gonewild'
   const res = await fetch('https://www.reddit.com/r/'+tags+'/.json',  
   {
@@ -49,5 +49,15 @@ console.log(posts.data.children)
   return {
     props: { posts } // props will be passed to the page
   };
+
+   } catch (error) {
+    console.error('Error fetching data:', error);
+
+    // Return an empty or default value in case of an error
+    return {
+      props: { posts: [] },
+    };
+  }
+}
 }
 export default Home
