@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "description": "TikTok-enhanced-clone-(CRISPY) ",
-   "author": "abhishekjinxed@gmail.com",
+  "author": "abhishekjinxed@gmail.com",
   "license": "MITf",
   "scripts": {
     "dev": "next dev",
@@ -17,7 +17,7 @@
     "@fortawesome/free-regular-svg-icons": "^6.1.2",
     "@fortawesome/free-solid-svg-icons": "^6.1.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
-    "next": "12.1.0",
+    "next": "^12.1.0",
     "react": "17.0.2",
     "react-dom": "17.0.2"
   },
