@@ -45,7 +45,7 @@ try{
   }
   );
   const posts = await res.json();
-console.log(posts.data.children)
+  console.log(posts.data.children)
   return {
     props: { posts } // props will be passed to the page
   };
@@ -58,6 +58,6 @@ console.log(posts.data.children)
       props: { posts: [] },
     };
   }
-}
+
 }
 export default Home
