@@ -43,6 +43,7 @@ const video = [];
 }
 export async function getServerSideProps(context) {
   // fetch the blog posts from the mock API
+ var posts
 try {
     // Your fetching code here
 
@@ -55,7 +56,7 @@ try {
     // })
   }
   );
-  const posts = await res.json();
+  posts = await res.json();
 } catch (error) {
     console.error("Error fetching data:", error);
 }

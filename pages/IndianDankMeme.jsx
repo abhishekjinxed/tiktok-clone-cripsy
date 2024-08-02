@@ -9,7 +9,8 @@ const video = [];
    const getPosts =props.posts.data.children.map((p)=>
         { 
           const im=p.data
-          if(im?.secure_media?.reddit_video.fallback_url!=undefined)
+          console.log(im)
+          if(im?.secure_media?.reddit_video?.fallback_url!=undefined)
             video.push({ 
                         id : im.id,
                         title: im.title,
