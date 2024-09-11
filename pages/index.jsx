@@ -1,70 +1,61 @@
-import PostList from 'components/PostList'
+import { useEffect, useState } from 'react';
+import PostList from 'components/PostList';
 
-const Home = (props) => {
+const Home = () => {
+  const [video, setVideo] = useState([]);
 
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const res = await fetch('https://old.reddit.com/r/funny/.json');
+        if (!res.ok) {
+          throw new Error(`HTTP error! Status: ${res.status}`);
+        }
 
-const video = []; 
+        const data = await res.json();
 
+        const videos = [];
 
-   const getPosts =props.posts.data.children.map((p)=>
-        { 
-          const im=p.data
-                  
-          if(im.secure_media?.reddit_video?.fallback_url!=undefined)
-            video.push({ 
-                        id : im.id,
-                        title: im.title,
-                        comments:im.num_comments,
-                        likes:im.ups,
-                        mp4: im.secure_media?.reddit_video?.fallback_url,
-                        source:im.link,
-                        nsfw:im.nsfw,
-                        shares:19,
-                        author: "@midudev",
-                        text: "this is default text",
-                        album:{title: im.author+" - Original Music", Cover:'/images/user.jpeg'},
-                        avatar:'/images/user.jpeg'
-                      
-                      });
+        if (data && data.data && data.data.children) {
+          data.data.children.map((p) => { 
+            const im = p.data;
 
-          });     
-        
-        
-      
+            if (im?.secure_media?.reddit_video?.fallback_url) {
+              videos.push({ 
+                id: im.id,
+                title: im.title || '',
+                comments: im.num_comments || 0,
+                likes: im.ups || 0,
+                mp4: im.secure_media.reddit_video.fallback_url,
+                source: im.link || '',
+                nsfw: im.over_18 || false,
+                shares: 19,
+                author: "@SameeraMankani",
+                text: "this is default text",
+                album: {
+                  title: `${im.author} - Original Music`,
+                  Cover: '/images/user.jpeg'
+                },
+                avatar: '/images/user.jpeg'
+              });
+            }
+          });
+        }
+
+        setVideo(videos);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchPosts();
+  }, []);
+
   return (
-   
     <main>
-     
-    <PostList video={video} />
-  </main>
-      
-   
-  )
-}
-export async function getServerSideProps(context) {
-  // fetch the blog posts from the mock API
- var posts
-try {
-    // Your fetching code here
-
-    //+
-    //Sareebeauties
-//Unexpected
-  const tags='Unexpected+BollyBlindsNGossip+TeenActressPhotos+Sareebeauties'
-  const res = await fetch('https://www.reddit.com/r/'+tags+'/.json',  
-  {
-    method: 'GET',
-    // headers: new Headers({
-    //   "Authorization":"Client-ID b744a48b8b78bf9"
-    // })
-  }
+      <PostList video={video} />
+    </main>
   );
-  posts = await res.json();
-} catch (error) {
-    console.error("Error fetching data:", error);
 }
-  return {
-    props: { posts } // props will be passed to the page
-  };
-}
-export default Home
+
+export default Home;
